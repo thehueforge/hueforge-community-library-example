@@ -29,25 +29,29 @@ hueforge-community-library-template/
 1. Create a `.json` filament library file in `libraries/` following HueForge's filament format
 2. The `generate_manifest.py` script will automatically discover and index it
 
-**Filament JSON format** — each file should contain:
+**Filament JSON format** — each file must contain a `Filaments` array where each entry has:
 
 ```json
 {
   "Filaments": [
     {
-      "name": "PLA White",
-      "manufacturerName": "Your Vendor",
-      "materialType": "PLA",
-      "colorLabel": "White",
-      "colorHex": "#FFFFFF",
-      "defaultTemp": 200,
-      ...
+      "Brand": "Your Vendor PLA",
+      "Color": "#ffffff",
+      "Name": "White",
+      "Owned": false,
+      "Transmissivity": 10.0,
+      "Type": "PLA",
+      "uuid": "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
     }
   ]
 }
 ```
 
-Refer to the [HueForge filament specification](https://github.com/HueForge/hueforge/blob/main/docs/filament-format.md) for the complete schema.
+**Required fields:** `Brand`, `Color` (hex), `Name`, `Owned`, `Transmissivity`, `Type`, `uuid`
+
+**Optional fields:** `Tags` (array of strings), `Secondary_Color`, `Secondary_Strength`, `Secondary_Type` (for dual-color/silk filaments)
+
+Generate a unique UUID for each filament entry — no two filaments should share a UUID across any library.
 
 ## One-Time Setup
 
